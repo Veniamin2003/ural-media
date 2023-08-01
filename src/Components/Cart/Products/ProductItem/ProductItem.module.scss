@@ -61,19 +61,6 @@
 }
 .count__input label {
   position: absolute;
-  top: 14px;
+  top: 16px;
   right: 80px;
-}
-.item__delete {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  font-size: 32px;
-  color: #cacaca;
-  transition: 0.3s;
-}
-
-.item__delete:hover {
-  cursor: pointer;
-  color: #2c43a1;
 }

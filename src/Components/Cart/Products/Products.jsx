@@ -5,6 +5,15 @@ import ProductItem from "./ProductItem/ProductItem";
 function Products(props) {
     let state = props.cartPage;
 
+    let updateCount = (count, id) => {
+        props.updateCount(count, id);
+    }
+    let updateSummary = (id) => {
+        props.updateSummary(id);
+    }
+    let updateResult = () => {
+        props.updateResult();
+    }
     return (
         <div className={s.product_block}>
             <div className={s.header_items}>
@@ -17,10 +26,13 @@ function Products(props) {
 
             {state.products.map(el => <ProductItem id={el.id} name={el.name} count={el.count}
                                                    measure={el.measure} price={el.price}
-                                                   priceWithoutVat={el.priceWithoutVat} summary={el.summary}/>)}
+                                                   priceWithoutVat={el.priceWithoutVat} summary={el.summary}
+                                                   updateCount={updateCount} updateSummary={updateSummary} updateResult={updateResult}/>)}
         </div>
 
     )
 }
+
+
 
 export default Products;

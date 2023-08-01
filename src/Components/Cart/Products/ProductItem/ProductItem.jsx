@@ -1,12 +1,24 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import s from "./ProductItem.module.scss"
 import IMG from "./../../../../Images/unnamed.png"
 import { TiDeleteOutline } from 'react-icons/ti';
 
 function ProductItem(props) {
     let state = props.state;
+    let count = React.createRef();
+    //let summary = props.price * props.count;
 
-    console.log(props);
+    useEffect(() => {
+        props.updateSummary(props.id);
+    }, [])
+
+    let onCountChange = () => {
+        let cnt = count.current.value;
+        let id = props.id;
+        props.updateCount(cnt, id);
+        props.updateResult();
+    }
+
     return (
         <div className={s.product_item}>
             <div className={s.item}>
@@ -14,7 +26,7 @@ function ProductItem(props) {
                 <p>{props.name}</p>
             </div>
             <div className={s.count__input}>
-                <input type="text" placeholder={props.count}/>
+                <input type="text" defaultValue={props.count} onBlur={onCountChange} ref={count}/>
                 <label>т</label>
             </div>
             <div>
@@ -26,12 +38,13 @@ function ProductItem(props) {
             <div>
                 <p>{props.summary} ₽</p>
             </div>
-            <div className={s.item__delete}>
+            <div className="item__delete">
                 <TiDeleteOutline />
             </div>
         </div>
-
     )
 }
+
+
 
 export default ProductItem;

@@ -1,0 +1,20 @@
+.results_container {
+  width: 100%;
+  text-align: right;
+  margin: 15px 0;
+
+  div {
+    padding: 5px 0;
+  }
+  .all_price {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .discount {
+    font-size: 14px;
+    color: red;
+  }
+  .vat {
+    font-size: 14px;
+  }
+}

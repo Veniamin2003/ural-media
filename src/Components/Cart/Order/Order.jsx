@@ -3,37 +3,51 @@ import s from "./Order.module.scss"
 
 import {AiOutlinePlus} from "react-icons/ai";
 import {AiOutlineMinus} from "react-icons/ai";
+import {useNavigate} from "react-router-dom";
 
 
 function Order(props) {
     let state = props.cartPage;
-    let isDeliveryBlock = false;
+
+    const navigate = useNavigate();
+
+    let isDeliveryBlock = state.isDeliveryBlockActive;
+
+    let activateDeliveryBlock = () => {
+        props.changeDeliveryBlock(true);
+    }
+    let deactivateDeliveryBlock = () => {
+        props.changeDeliveryBlock(false);
+    }
+
+    const openBid = () => {
+        navigate('/cart/order');
+    }
+
 
     return (
         <div className={s.order_container}>
             {isDeliveryBlock ?
                 (
-                    <button className="btn_blue">
-                        <AiOutlinePlus/>
-                        <div className={s.btn_delivery_text}>
-                            Добавить доставку
-                        </div>
-                    </button>
-                )
-                :
-                (
-                    <button className="btn_blue_two">
+                    <button className="btn_blue_two" onClick={deactivateDeliveryBlock}>
                         <AiOutlineMinus/>
                         <div className={s.btn_delivery_text}>
                             Удалить доставку
                         </div>
                     </button>
                 )
+                :
+                (
+                    <button className="btn_blue" onClick={activateDeliveryBlock}>
+                        <AiOutlinePlus/>
+                        <div className={s.btn_delivery_text}>
+                            Добавить доставку
+                        </div>
+                    </button>
+                )
             }
 
-
-
-            <button className="btn_red">
+            <button className="btn_red" onClick={openBid}>
                 <div className={s.btn_delivery_text}>
                     Оформить заказ
                 </div>

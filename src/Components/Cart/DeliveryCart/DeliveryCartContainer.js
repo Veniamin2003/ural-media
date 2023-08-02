@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import DeliveryCart from "./DeliveryCart";
+import {deleteDeliveryAC, updateResultAC} from "../../../redux/cart-reducer";
 
 let mapStateToProps = (state) => {
     return {
@@ -10,14 +11,22 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
+        deleteDelivery: () => {
+            let action = deleteDeliveryAC();
+            dispatch(action);
+        },
+        updateResult: () => {
+            let action = updateResultAC();
+            dispatch(action);
+        }
     }
 }
 
 function IsAvailable(props) {
     let state = props.cartPage;
-    const deliveryCity = state.currentDelivery.city;
-    if (deliveryCity !== "") {
-        return <DeliveryCart city={state.currentDelivery.city} cost={state.currentDelivery.cost}/>
+    let isDeliveryConfirmed = state.isDeliveryConfirmed;
+    if (isDeliveryConfirmed) {
+        return <DeliveryCart city={state.currentDelivery.city} cost={state.currentDelivery.cost} deleteDelivery={props.deleteDelivery} updateResult={props.updateResult}/>
     }
 }
 

@@ -6,18 +6,33 @@ import { TiDeleteOutline } from 'react-icons/ti';
 function ProductItem(props) {
     let state = props.state;
     let count = React.createRef();
-    //let summary = props.price * props.count;
 
     useEffect(() => {
         props.updateSummary(props.id);
     }, [])
 
     let onCountChange = () => {
+        debugger
         let cnt = count.current.value;
         let id = props.id;
         props.updateCount(cnt, id);
         props.updateResult();
+        props.countTonn();
     }
+
+    let onDeleteProduct = () => {
+        props.deleteProduct(props.id);
+        props.updateResult();
+        props.countTonn();
+    }
+
+    function numberWithSpaces(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+
+    let price = numberWithSpaces(props.price);
+    let priceWithoutVat = numberWithSpaces(props.priceWithoutVat);
+    let summary = numberWithSpaces(props.summary);
 
     return (
         <div className={s.product_item}>
@@ -26,20 +41,20 @@ function ProductItem(props) {
                 <p>{props.name}</p>
             </div>
             <div className={s.count__input}>
-                <input type="text" defaultValue={props.count} onBlur={onCountChange} ref={count}/>
+                <input key={props.id} type="number" defaultValue={props.count} onBlur={onCountChange} ref={count} />
                 <label>т</label>
+                </div>
+            <div>
+                <p>{price} ₽</p>
             </div>
             <div>
-                <p>{props.price} ₽</p>
+                <p>{priceWithoutVat} ₽</p>
             </div>
             <div>
-                <p>{props.priceWithoutVat} ₽</p>
-            </div>
-            <div>
-                <p>{props.summary} ₽</p>
+                <p>{summary} ₽</p>
             </div>
             <div className="item__delete">
-                <TiDeleteOutline />
+                <TiDeleteOutline onClick={onDeleteProduct}/>
             </div>
         </div>
     )

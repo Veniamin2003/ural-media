@@ -3,6 +3,7 @@ import s from "./Products.module.scss"
 import ProductItem from "./ProductItem/ProductItem";
 
 function Products(props) {
+    debugger
     let state = props.cartPage;
 
     let updateCount = (count, id) => {
@@ -14,6 +15,13 @@ function Products(props) {
     let updateResult = () => {
         props.updateResult();
     }
+    let deleteProduct = (id) => {
+        props.deleteProduct(id);
+    }
+    let countTonn = () => {
+        props.countTonn();
+    }
+
     return (
         <div className={s.product_block}>
             <div className={s.header_items}>
@@ -27,7 +35,8 @@ function Products(props) {
             {state.products.map(el => <ProductItem id={el.id} name={el.name} count={el.count}
                                                    measure={el.measure} price={el.price}
                                                    priceWithoutVat={el.priceWithoutVat} summary={el.summary}
-                                                   updateCount={updateCount} updateSummary={updateSummary} updateResult={updateResult}/>)}
+                                                   updateCount={updateCount} updateSummary={updateSummary}
+                                                   updateResult={updateResult} deleteProduct={deleteProduct} countTonn={countTonn}/>)}
         </div>
 
     )

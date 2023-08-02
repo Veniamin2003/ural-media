@@ -20,6 +20,7 @@ code {
 
 :root {
   --color-grey: #38393f;
+  --color-grey-two: #CACACA;
   --color-blue: #2c43a1;
   --color-red: #d81a27;
   --transition: all 0.3s ease;
@@ -39,7 +40,6 @@ code {
   color: #2c43a1;
 }
 .btn_blue, .btn_red, .btn_red_empty, .btn_blue_two {
-
   display: flex;
   align-items: center;
   justify-content: center;

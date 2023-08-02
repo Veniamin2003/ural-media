@@ -5,6 +5,11 @@ import {TiDeleteOutline} from "react-icons/ti";
 function DeliveryCart(props) {
     let state = props.cartPage;
 
+    let onDeleteDelivery = () => {
+        props.deleteDelivery();
+        props.updateResult();
+    }
+
     return (
         <div className={s.delivery_item}>
             <div className={s.delivery_item__header}>
@@ -14,7 +19,7 @@ function DeliveryCart(props) {
                 <p>{props.cost}</p>
             </div>
             <div className="item__delete">
-                <TiDeleteOutline />
+                <TiDeleteOutline onClick={onDeleteDelivery}/>
             </div>
         </div>
     )

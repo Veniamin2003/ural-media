@@ -1,7 +1,7 @@
 import './App.css';
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import CartContainer from "./Components/Cart/CartContainer";
-import Cart from "./Components/Cart/Cart";
+import BidContainer from "./Components/BidPage/Bid/BidContainer";
 
 function App() {
   return (
@@ -12,6 +12,8 @@ function App() {
 
                   <Route path='/cart'
                          element={<CartContainer/>}/>
+                  <Route path='/cart/order'
+                         element={<BidContainer/>}/>
               </Routes>
           </div>
       </BrowserRouter>

@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import Results from "./Results";
-import {updateResultAC} from "../../../redux/cart-reducer";
+import {countTonnAC, updateResultAC} from "../../../redux/cart-reducer";
 
 let mapStateToProps = (state) => {
     return {
@@ -14,7 +14,11 @@ let mapDispatchToProps = (dispatch) => {
         updateResult: () => {
             let action = updateResultAC();
             dispatch(action);
-        }
+        },
+        countTonn: () => {
+            let action = countTonnAC();
+            dispatch(action);
+        },
     }
 }
 

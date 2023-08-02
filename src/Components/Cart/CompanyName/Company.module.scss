@@ -1,0 +1,36 @@
+.company_container {
+  height: 103px;
+  position: relative;
+  background-color: #fafafa;
+  max-width: 1280px;
+  width: 100%;
+  margin: 15px auto;
+
+}
+
+.company_container:after {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 100vw;
+  background: #fafafa;
+  z-index: -1;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+.company_block {
+  display: flex;
+  justify-content: space-between;
+}
+
+.company_block p {
+  font-size: 14px;
+}
+.company_block h3 {
+  font-size: 22px;
+}

@@ -11,6 +11,9 @@
   width: 292px;
   height: 59px;
 }
+.name_city {
+  margin-bottom: 25px;
+}
 .price_elem {
   height: 100%;
   display: flex;
@@ -27,3 +30,13 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.select {
+  width: 292px;
+  height: 59px;
+  border: 1px solid #999;
+  color: var(--color-grey);
+  background-color: transparent;
+  font-size: 16px;
+}
+

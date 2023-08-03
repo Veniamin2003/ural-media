@@ -30,6 +30,12 @@ function Delivery(props) {
         return <option key={el.id} value={el.id}>{el.city}</option>;
     });
 
+    function numberWithSpaces(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+
+    let cost = numberWithSpaces(state.temporaryDelivery.cost);
+
     return (
         <div className={s.delivery_container}>
             <div className={s.city}>
@@ -45,7 +51,7 @@ function Delivery(props) {
             <div className={s.price_elem}>
                 <div className={s.price_text}>Стоимость</div>
                 <div >
-                    <div className={s.price}>{state.temporaryDelivery.cost}</div>
+                    <div className={s.price}>{cost} ₽</div>
                 </div>
             </div>
             <div className={s.btn_block}>

@@ -10,13 +10,18 @@ function DeliveryCart(props) {
         props.updateResult();
     }
 
+    function numberWithSpaces(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+
+    let cost = numberWithSpaces(props.cost);
     return (
         <div className={s.delivery_item}>
             <div className={s.delivery_item__header}>
                 <p>Доставка в {props.city}</p>
             </div>
             <div>
-                <p>{props.cost}</p>
+                <p>{cost} ₽</p>
             </div>
             <div className="item__delete">
                 <TiDeleteOutline onClick={onDeleteDelivery}/>

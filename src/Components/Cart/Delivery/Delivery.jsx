@@ -17,6 +17,8 @@ function Delivery(props) {
         if(state.temporaryDelivery.city !== ""){
             props.onDeliveryConfirm();
             props.updateResult();
+            props.typeDelChanged(state.deliveryTrainName);
+            props.changeTrainStatus();
         }
         else {
             alert("Вам необходимо выбрать город")

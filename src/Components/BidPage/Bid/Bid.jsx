@@ -2,6 +2,8 @@ import React from 'react'
 import s from "./Bid.module.scss"
 import {BsArrowRight} from "react-icons/bs";
 import ClientDataContainer from "../ClientData/ClientDataContainer";
+import DeliveryTypeContainer from "../DeliveryType/DeliveryTypeContainer";
+import OrderResultContainer from "../OrderResult/OrderResultContainer";
 
 function Bid(props) {
     return (
@@ -20,6 +22,8 @@ function Bid(props) {
 
                 <div className={s.bid_content}>
                     <ClientDataContainer />
+                    <DeliveryTypeContainer />
+                    <OrderResultContainer />
                 </div>
             </div>
         </div>

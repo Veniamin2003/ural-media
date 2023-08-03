@@ -1,7 +1,11 @@
 import React from "react";
 import {connect} from "react-redux";
 import ClientData from "./ClientData";
-import {addressChangeAC, deleteProductAC} from "../../../redux/cart-reducer";
+import {
+    addressChangeAC,
+    fullNameChangeAC,
+    phoneChangeAC
+} from "../../../redux/cart-reducer";
 
 let mapStateToProps = (state) => {
     return {
@@ -12,8 +16,15 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = (dispatch) => {
     return {
         addressChange: (address) => {
-            debugger
             let action = addressChangeAC(address);
+            dispatch(action);
+        },
+        fullNameChange: (fullName) => {
+            let action = fullNameChangeAC(fullName);
+            dispatch(action);
+        },
+        phoneChange: (phone) => {
+            let action = phoneChangeAC(phone);
             dispatch(action);
         }
     }

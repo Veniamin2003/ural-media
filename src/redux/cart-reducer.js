@@ -14,6 +14,14 @@ const CONFIRM_DELIVERY = 'CONFIRM_DELIVERY';
 const DELETE_DELIVERY = 'DELETE_DELIVERY';
 
 const ADDRESS_CHANGE = 'ADDRESS_CHANGE';
+const FULL_NAME_CHANGE = 'FULL_NAME_CHANGE';
+const PHONE_CHANGE = 'PHONE_CHANGE';
+
+const CHANGE_PICKUP_STATUS = 'CHANGE_PICKUP_STATUS';
+const CHANGE_TRAIN_STATUS = 'CHANGE_TRAIN_STATUS';
+const CHANGE_CAR_STATUS = 'CHANGE_CAR_STATUS';
+
+const CHANGE_DEL_TYPE = 'CHANGE_DEL_TYPE';
 
 let initialState = {
     totalCost: 0,
@@ -21,6 +29,7 @@ let initialState = {
     totalDiscount: 1607338,
     totalCountTonn: 0,
     currency: "RUB",
+    currentDeliveryType: "Самовывоз",
     currentDelivery: {
         city: "",
         cost: 0
@@ -58,11 +67,18 @@ let initialState = {
     isDeliveryBlockActive: false,
     isDeliveryConfirmed: false,
 
+    isDeliveryPickupActive: true,//самовывоз
+    isDeliveryTrainActive: false, //жд
+    isDeliveryCarActive: false, //машиной
+
+    deliveryPickupName: "Самовывоз",
+    deliveryTrainName: "Доставка по адресу с помощью ж/д",
+    deliveryCarName: "Доставка по адресу машиной",
+
     temporaryDelivery: {
         city: "",
         cost: 0
     },
-
     deliveryCities: [
         { id: 1, city: "Челябинск", cost: 50000 },
         { id: 2, city: "Магнитогорск", cost: 25000 },
@@ -70,10 +86,12 @@ let initialState = {
     ],
 
     clientData: {
-        name: "",
+        fullName: "Иванов Иван Иванович",
         address: "7414003633",
-        phone: ""
-    }
+        phone: "+7 (586) 682-78-15"
+    },
+    companyName: "Компания: ООО “Аверс”",
+    companyAddress: "обл. Свердловская, г. Екатеринбург"
 }
 
 const cartReducer = (state = initialState, action) => {
@@ -185,15 +203,63 @@ const cartReducer = (state = initialState, action) => {
             }
 
         case ADDRESS_CHANGE:
-            debugger
-            let tempClientData = {
-                name: state.clientData.name,
+            let tempAddress = {
+                fullName: state.clientData.fullName,
                 address: action.address,
                 phone: state.clientData.phone
             }
             return {
                 ...state,
-                clientData: tempClientData
+                clientData: tempAddress
+            }
+
+        case FULL_NAME_CHANGE:
+            let tempFullName = {
+                fullName: action.fullName,
+                address: state.clientData.address,
+                phone: state.clientData.phone
+            }
+            return {
+                ...state,
+                clientData: tempFullName
+            }
+        case PHONE_CHANGE:
+            let tempPhone = {
+                fullName: state.clientData.fullName,
+                address: state.clientData.address,
+                phone: action.phone
+            }
+            return {
+                ...state,
+                clientData: tempPhone
+            }
+
+        case CHANGE_PICKUP_STATUS:
+            return {
+                ...state,
+                isDeliveryPickupActive: true,
+                isDeliveryTrainActive: false,
+            }
+        case CHANGE_TRAIN_STATUS:
+            return {
+                ...state,
+                isDeliveryTrainActive: true,
+                isDeliveryPickupActive: false,
+            }
+
+        case CHANGE_CAR_STATUS:
+            return {
+                ...state,
+                isDeliveryCarActive: true,
+                isDeliveryTrainActive: false,
+                isDeliveryPickupActive: false,
+
+            }
+
+        case CHANGE_DEL_TYPE:
+            return {
+                ...state,
+                currentDeliveryType: action.typeDel
             }
 
         default:
@@ -208,15 +274,19 @@ export const  updateResultAC = () => ({type: UPDATE_RESULT});
 export const  countTonnAC = () => ({type: COUNT_TONN});
 export const  deleteProductAC = (id) => ({type: DELETE_PRODUCT, id: id});
 
-
 export const  changeDeliveryBlockAC = (value) => ({type: CHANGE_DELIVERY_BLOCK, value: value});
 export const  updateCurrentDeliveryAC = (id) => ({type: UPDATE_CURRENT_DELIVERY, id: id});
 export const  deliveryConfirmAC = () => ({type: CONFIRM_DELIVERY});
 export const  deleteDeliveryAC = () => ({type: DELETE_DELIVERY});
 
-
 export const  addressChangeAC = (address) => ({type: ADDRESS_CHANGE, address: address});
+export const  fullNameChangeAC = (fullName) => ({type: FULL_NAME_CHANGE, fullName: fullName});
+export const  phoneChangeAC = (phone) => ({type: PHONE_CHANGE, phone: phone});
 
+export const  changePickupStatusAC = (state) => ({type: CHANGE_PICKUP_STATUS, state: state});
+export const  changeTrainStatusAC = (state) => ({type: CHANGE_TRAIN_STATUS, state: state});
+export const  changeCarStatusAC = (state) => ({type: CHANGE_CAR_STATUS, state: state});
 
+export const  typeDelChangedAC = (typeDel) => ({type: CHANGE_DEL_TYPE, typeDel: typeDel});
 
 export default cartReducer;

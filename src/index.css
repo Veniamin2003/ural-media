@@ -39,7 +39,7 @@ code {
   cursor: pointer;
   color: #2c43a1;
 }
-.btn_blue, .btn_red, .btn_red_empty, .btn_blue_two {
+.btn_blue, .btn_red, .btn_red_empty, .btn_blue_two, .btn_blue_delivery, .btn_blue_two_delivery {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,21 +48,30 @@ code {
   transition: var(--transition);
   cursor: pointer;
 }
-.btn_blue {
+
+.btn_blue, .btn_blue_delivery {
   color: var(--color-blue);
   background: transparent;
   border: 1px solid var(--color-blue);
 }
-.btn_blue_two {
+.btn_blue:hover, .btn_blue_delivery:hover {
+  background: var(--color-blue);
+  color: white;
+}
+.btn_blue_delivery, .btn_blue_two_delivery {
+  width: 100%;
+}
+.btn_blue_two, .btn_blue_two_delivery {
   color: white;
   background: var(--color-blue);
   border: 1px solid var(--color-blue);
 }
-.btn_blue_two:hover {
+.btn_blue_two:hover, .btn_blue_two_delivery:hover {
   color: var(--color-blue);
   background: transparent;
   border: 1px solid var(--color-blue);
 }
+
 
 .btn_red {
   color: white;
@@ -82,10 +91,7 @@ code {
   border: 1px solid var(--color-blue);
 }
 
-.btn_blue:hover {
-  background: var(--color-blue);
-  color: white;
-}
+
 
 .btn_red:hover {
   background: var(--color-blue);

@@ -1,11 +1,8 @@
 import React, {useState} from "react"
 import "./DeliveryTModal.css"
-import s from "../PickupType/PickupType.module.scss"
 import {AiOutlineClose} from "react-icons/ai";
-import {AiFillCheckCircle} from "react-icons/ai";
 import PickupType from "../PickupType/PickupType";
 import TrainType from "../TrainType/TrainType";
-import {changeCarStatusAC} from "../../../../redux/cart-reducer";
 
 const DeliveryTModal = ( props ) => {
     let state = props.cartPage;

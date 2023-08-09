@@ -1,0 +1,126 @@
+.select_block, .select_block_active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 65px;
+  border: 1px solid var(--color-grey-two);
+
+}
+.select_block {
+  transition: var(--transition);
+}
+.select_block:hover {
+  border: 1px solid rgba(0, 0, 0, 0.64);
+}
+.select_block_active {
+  border: 1px solid rgba(0, 0, 0, 0.64);
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 15px;
+}
+.second_block {
+  position: absolute;
+  z-index: 4;
+  width: 100%;
+  border: 1px solid var(--color-grey-two);
+  margin-bottom: 20px;
+  background: white;
+}
+.select_items {
+  width: 100%;
+  height: 200px;
+  //border: 1px solid var(--color-grey-two);
+  border-top: none;
+  display: flex;
+  justify-content: center;
+
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.content {
+
+  width: 100%;
+  text-align: center;
+}
+.content_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.item_two {
+  width: 95%;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  transition: var(--transitiona);
+}
+
+.item:hover {
+  background: #F0F0F0;
+}
+
+.select_items::-webkit-scrollbar {
+  width: 2px;
+  background-color: transparent;
+}
+
+.select_items::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #ababab;
+}
+
+.select_items::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+.select_items.active {
+  transform: scale(1);
+}
+
+.search {
+  width: 100%;
+  height: 65px;
+  display: flex;
+  justify-content: center;
+  //border-right: 1px solid var(--color-grey-two);
+  //border-left: 1px solid var(--color-grey-two);
+  padding-top: 10px;
+  margin-bottom: 10px;
+
+  .search_block {
+    width: 95%;
+    display: flex;
+
+    .input  {
+      position: relative;
+      width: 100%;
+      height: 65px;
+      padding-left: 15px;
+      border: 1px solid var(--color-grey-two);
+      outline:none;
+    }
+    .search_icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin-top: 2rem;
+      margin-right: 2rem;
+      font-size: 22px;
+    }
+  }
+
+
+}

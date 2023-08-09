@@ -4,6 +4,12 @@ import './index.css';
 import App from './App';
 import {Provider} from "react-redux";
 import store from "./redux/redux-store";
+import "./../src/fonts/MYRIADPRO-BOLD.OTF"
+import "./../src/fonts/MYRIADPRO-COND.OTF"
+import "./../src/fonts/MYRIADPRO-CONDIT.OTF"
+import "./../src/fonts/MyriadPro-Light.otf"
+import "./../src/fonts/MYRIADPRO-REGULAR.OTF"
+import "./../src/fonts/MYRIADPRO-SEMIBOLD.OTF"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

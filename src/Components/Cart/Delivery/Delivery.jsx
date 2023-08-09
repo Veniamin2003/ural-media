@@ -1,11 +1,17 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import s from "./Delivery.module.scss"
 import * as events from "events";
+import Select from "../../../UI/Select/Select";
+import SelectContainer from "../../../UI/Select/SelectContainer";
 //import "./Select.css"
 
 function Delivery(props) {
     const [value, setValue] = useState('');
     let state = props.state;
+
+    /*useEffect(() => {
+        props.createCopyCities();
+    }, [])*/
 
     let onValueChanged = (event) => {
         setValue(event.target.value);
@@ -41,10 +47,14 @@ function Delivery(props) {
             <div className={s.city}>
                 <div className={s.name_city}>Укажите город</div>
                 <div>
-                    <select className={s.select} value={value} onChange={onValueChanged}>
+                    {/*<select className={s.select} value={value} onChange={onValueChanged}>
                         <option value="" disabled selected hidden>Город</option>
                         {options}
-                    </select>
+                    </select>*/}
+
+                    <div className={s.select_container}>
+                        <SelectContainer state={state}/>
+                    </div>
                 </div>
 
             </div>
@@ -55,7 +65,10 @@ function Delivery(props) {
                 </div>
             </div>
             <div className={s.btn_block}>
-                <button className="btn_red_empty" onClick={onDeliveryConfirm}>Подтвердить</button>
+                <div className={s.btn_order}>
+                    <button className="btn_red_empty" onClick={onDeliveryConfirm}>Подтвердить</button>
+                </div>
+
             </div>
         </div>
     )

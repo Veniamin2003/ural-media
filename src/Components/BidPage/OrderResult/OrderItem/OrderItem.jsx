@@ -13,8 +13,8 @@ function OrderItem(props) {
     return (
         <div className={s.or_item_block}>
             <div className={s.or_item}>
-                <p>{props.name}, {props.count} шт.</p>
-                <p>{summary} ₽</p>
+                <div className={s.name}>{props.name}, {props.count} шт.</div>
+                <div>{summary} ₽</div>
             </div>
         </div>
     )

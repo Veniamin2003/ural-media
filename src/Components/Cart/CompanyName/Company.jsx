@@ -12,7 +12,7 @@ function Company(props) {
     return (
         <div className={s.company_container}>
             <div className={s.company_block}>
-                <div>
+                <div className={s.company_name}>
                     <div><h3>Компания ООО "Аверс"</h3></div>
                     <div><p>Склад. Магнитогорск: {state.products.length} позиции, {state.totalCountTonn} т</p></div>
                 </div>

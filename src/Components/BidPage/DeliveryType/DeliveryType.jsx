@@ -24,14 +24,17 @@ function ClientData(props) {
                                 <p>{state.currentDeliveryType}</p>
                                 <AiFillCheckCircle className={s.icon}/>
                             </div>
-                            <p onClick={openModal} className={s.change}>Изменить</p>
+                            <div onClick={openModal} className={s.change}>Изменить</div>
                         </div>
-                        <div>
-                            <p>{state.companyName}</p>
+                        <div className={s.dl_type_second}>
+                            <div>
+                                {state.companyName}
+                            </div>
+                            <div>
+                                {state.companyAddress}
+                            </div>
                         </div>
-                        <div>
-                            <p>{state.companyAddress}</p>
-                        </div>
+
                     </div>
                 </div>
             </div>

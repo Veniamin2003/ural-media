@@ -27,10 +27,18 @@
   height: 39px;
 }
 .btn_block {
+
   display: flex;
   justify-content: flex-end;
 }
-
+.btn_order {
+  width: 187px;
+}
+.select_container {
+  cursor: pointer;
+  width: 294px;
+  position: relative;
+}
 .select {
   width: 292px;
   height: 59px;

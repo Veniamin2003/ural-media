@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import Products from "./Products";
 import {
-    countTonnAC,
+    countTonnAC, createCopyCitiesAC,
     deleteProductAC,
     updateCountAC,
     updateResultAC,
@@ -36,7 +36,11 @@ let mapDispatchToProps = (dispatch) => {
         deleteProduct: (id) => {
             let action = deleteProductAC(id);
             dispatch(action);
-        }
+        },
+        createCopyCities: () => {
+            let action = createCopyCitiesAC();
+            dispatch(action);
+        },
     }
 }
 

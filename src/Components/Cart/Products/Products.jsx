@@ -1,10 +1,13 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import s from "./Products.module.scss"
 import ProductItem from "./ProductItem/ProductItem";
 
 function Products(props) {
-    debugger
     let state = props.cartPage;
+
+    useEffect(() => {
+        props.createCopyCities();
+    }, [])
 
     let updateCount = (count, id) => {
         props.updateCount(count, id);

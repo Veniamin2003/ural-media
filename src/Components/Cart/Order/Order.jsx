@@ -29,29 +29,34 @@ function Order(props) {
         <div className={s.order_container}>
             {isDeliveryBlock ?
                 (
-                    <button className="btn_blue_two" onClick={deactivateDeliveryBlock}>
-                        <AiOutlineMinus/>
-                        <div className={s.btn_delivery_text}>
-                            Удалить доставку
-                        </div>
-                    </button>
+                    <div className={s.btn}>
+                        <button className="btn_blue_two" onClick={deactivateDeliveryBlock}>
+                            <AiOutlineMinus/>
+                            <div className={s.btn_delivery_text}>
+                                Удалить доставку
+                            </div>
+                        </button>
+                    </div>
                 )
                 :
                 (
-                    <button className="btn_blue" onClick={activateDeliveryBlock}>
-                        <AiOutlinePlus/>
-                        <div className={s.btn_delivery_text}>
-                            Добавить доставку
-                        </div>
-                    </button>
+                    <div className={s.btn}>
+                        <button className="btn_blue" onClick={activateDeliveryBlock}>
+                            <AiOutlinePlus/>
+                            <div className={s.btn_delivery_text}>
+                                Добавить доставку
+                            </div>
+                        </button>
+                    </div>
                 )
             }
-
-            <button className="btn_red" onClick={openBid}>
-                <div className={s.btn_delivery_text}>
-                    Оформить заказ
-                </div>
-            </button>
+            <div className={s.btn_order}>
+                <button className="btn_red" onClick={openBid}>
+                    <div className={s.btn_delivery_text}>
+                        Оформить заказ
+                    </div>
+                </button>
+            </div>
         </div>
     )
 }

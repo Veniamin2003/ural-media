@@ -3,6 +3,7 @@ import s from "./TrainType.module.scss"
 import {AiFillCheckCircle} from "react-icons/ai";
 import {IoRadioButtonOn} from "react-icons/io5";
 import {changeCarStatusAC} from "../../../../redux/cart-reducer";
+import SelectContainer from "../../../../UI/Select/SelectContainer";
 
 const TrainType = ( props ) => {
     let state = props.state;
@@ -20,6 +21,15 @@ const TrainType = ( props ) => {
     });
 
     let trainActive = state.isDeliveryTrainActive;
+
+    if (!trainActive) { //если блок не активен, то убираем выбор с радиокнопок
+        let radios = document.getElementsByName("train");
+
+        for (let i = 0; i < radios.length; i++) {
+            if (radios[i].checked) radios[i].checked = false;
+        }
+
+    }
 
     let onChangeTrainStatus = () => {
         props.typeDelChanged(state.deliveryTrainName);
@@ -69,41 +79,45 @@ const TrainType = ( props ) => {
                 <div className={trainTypeClass}>
                     <p>Укажите город:</p>
                     <div>
-                        <select className={s.select} value={value} onChange={onValueChanged}>
+                        {/*<select className={s.select} value={value} onChange={onValueChanged}>
                             <option value="" disabled hidden >{state.currentDelivery.city}</option>
                             {options}
-                        </select>
+                        </select>*/}
+                        <div className={s.select_container}>
+                            <SelectContainer state={state}/>
+                        </div>
                     </div>
 
                     <div>
                         <p>Выберите транспорт:</p>
                         <div className={s.radio_block}>
-                            {/*<div>
+                            <div className={s.radio_element}>
                                 <input
                                     type="radio"
                                     name="train"
                                     value={state.deliveryTrainName}
-                                    onChange={onTypeDelChanged}
+                                    onChange={onTypeTrainChanged}
                                 />
-                                {state.deliveryTrainName}
+                                <label>Доставка ж/д</label>
                             </div>
-                            <div>
+                            <div className={s.radio_element}>
                                 <input
                                     type="radio"
-                                    name="car"
+                                    name="train"
                                     value={state.deliveryCarName}
-                                    onChange={onTypeDelChanged2}
+                                    onChange={onTypeCarChanged}
                                 />
-                                {state.deliveryCarName}
-                            </div>*/}
-                            <div className={s.radio}>
+                                <label>Доставка машиной</label>
+
+                            </div>
+                            {/*<div className={s.radio}>
                                 <IoRadioButtonOn className={s.icon_radio} onClick={onTypeTrainChanged}/>
                                 <p>{state.deliveryTrainName}</p>
                             </div>
                             <div className={s.radio}>
                                 <IoRadioButtonOn className={s.icon_radio} onClick={onTypeCarChanged}/>
                                 <p>{state.deliveryCarName}</p>
-                            </div>
+                            </div>*/}
                         </div>
                     </div>
 

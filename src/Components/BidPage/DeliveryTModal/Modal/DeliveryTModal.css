@@ -20,9 +20,9 @@
 }
 
 .modal__content {
-    width: 45vw;
+    width: 39vw;
+    height: auto;
     padding: 50px;
-    border-radius: 1px;
     background-color: white;
     transform: scale(0.3);
     transition: 0.4s all;
@@ -30,6 +30,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    overflow: hidden;
+    overflow-y: scroll
+}
+.modal__content::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+}
+
+.modal__content::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #ababab;
+}
+
+.modal__content::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    background-color: transparent;
 }
 
 .modal__content.active {

@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import Delivery from "./Delivery";
 import {
-    changeTrainStatusAC,
+    changeTrainStatusAC, createCopyCitiesAC,
     deliveryConfirmAC, typeDelChangedAC,
     updateCurrentDeliveryAC,
     updateResultAC
@@ -36,6 +36,10 @@ let mapDispatchToProps = (dispatch) => {
             let action = changeTrainStatusAC(state);
             dispatch(action);
         },
+        createCopyCities: () => {
+            let action = createCopyCitiesAC();
+            dispatch(action);
+        },
     }
 }
 
@@ -43,7 +47,7 @@ function IsDeliveryActive(props) {
     let state = props.cartPage;
     if (state.isDeliveryBlockActive) return <Delivery state={state} updateCurrentDelivery={props.updateCurrentDelivery}
                                                       onDeliveryConfirm={props.onDeliveryConfirm} updateResult={props.updateResult}
-                                                      typeDelChanged={props.typeDelChanged} changeTrainStatus={props.changeTrainStatus}
+                                                      typeDelChanged={props.typeDelChanged} changeTrainStatus={props.changeTrainStatus} createCopyCities={props.createCopyCities}
     />
 }
 

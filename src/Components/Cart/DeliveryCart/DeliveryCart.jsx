@@ -18,7 +18,7 @@ function DeliveryCart(props) {
     return (
         <div className={s.delivery_item}>
             <div className={s.delivery_item__header}>
-                <p>Доставка в {props.city}</p>
+                <p>Доставка в г. {props.city}</p>
             </div>
             <div>
                 <p>{cost} ₽</p>

@@ -19,12 +19,13 @@ function EmptyCart(props) {
                 <div>
                     <p>В вашей корзине пока ничего нет.</p>
                 </div>
-                <div className={s.btn}>
-                    <button className="btn_blue_two">
-                        <div>
-                            Оформить заказ
-                        </div>
-                    </button>
+                <div className={s.btn_block}>
+                    <div className={s.btn}>
+                        <button className="btn_blue_two">
+                            За покупками
+                        </button>
+                    </div>
+
                 </div>
             </div>
         </div>

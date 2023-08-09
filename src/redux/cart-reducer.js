@@ -1,5 +1,6 @@
 import React from 'react'
 
+const COPY_CITIES = 'COPY_CITIES';
 const CLEAR_CART = 'CLEAR_CART';
 
 const UPDATE_COUNT = 'UPDATE_COUNT';
@@ -12,6 +13,7 @@ const CHANGE_DELIVERY_BLOCK = 'CHANGE_DELIVERY_BLOCK';
 const UPDATE_CURRENT_DELIVERY = 'UPDATE_CURRENT_DELIVERY';
 const CONFIRM_DELIVERY = 'CONFIRM_DELIVERY';
 const DELETE_DELIVERY = 'DELETE_DELIVERY';
+const UPDATE_SEARCH_QUERY = 'UPDATE_SEARCH_QUERY';
 
 const ADDRESS_CHANGE = 'ADDRESS_CHANGE';
 const FULL_NAME_CHANGE = 'FULL_NAME_CHANGE';
@@ -25,8 +27,8 @@ const CHANGE_DEL_TYPE = 'CHANGE_DEL_TYPE';
 
 let initialState = {
     totalCost: 0,
-    totalVat: 101550,
-    totalDiscount: 1607338,
+    totalVat: 0,
+    totalDiscount: 0,
     totalCountTonn: 0,
     currency: "RUB",
     currentDeliveryType: "Самовывоз",
@@ -38,10 +40,10 @@ let initialState = {
         {
             id: 1,
             name: "UMC 800 1*32 Однорядная",
-            count: 10,
+            count: 1,
             measure: "т",
-            price: 110790,
-            priceWithoutVat: 98587,
+            price: 118200,
+            priceWithoutVat: 98500,
             summary: 0,
         },
         {
@@ -49,8 +51,8 @@ let initialState = {
             name: "Натяжитель ленты ГОСТ 380-2005",
             count: 4,
             measure: "т",
-            price: 2222,
-            priceWithoutVat: 98587,
+            price: 15000,
+            priceWithoutVat: 12500,
             summary: 0,
         },
         {
@@ -58,8 +60,8 @@ let initialState = {
             name: "UMC 970HE 0.63*19 Многорядная",
             count: 5,
             measure: "т",
-            price: 1995,
-            priceWithoutVat: 1805,
+            price: 2160,
+            priceWithoutVat: 1800,
             summary: 0,
         }
     ],
@@ -83,19 +85,30 @@ let initialState = {
         { id: 1, city: "Челябинск", cost: 50000 },
         { id: 2, city: "Магнитогорск", cost: 25000 },
         { id: 3, city: "Пермь", cost: 65000},
+        { id: 4, city: "Самара", cost: 30000},
+        { id: 5, city: "Екатеринбург", cost: 40000},
+        { id: 6, city: "Москва", cost: 10000},
     ],
+    sortedDeliveryCities: [],
 
     clientData: {
-        fullName: "Иванов Иван Иванович",
-        address: "7414003633",
-        phone: "+7 (586) 682-78-15"
+        fullName: "", //Иванов Иван Иванович
+        address: "", //7414003633
+        phone: "" //+7 (586) 682-78-15
     },
     companyName: "Компания: ООО “Аверс”",
-    companyAddress: "обл. Свердловская, г. Екатеринбург"
+    companyAddress: "обл. Свердловская, г. Екатеринбург",
+
+
 }
 
 const cartReducer = (state = initialState, action) => {
     switch (action.type) {
+        case COPY_CITIES:
+            return {
+                ...state,
+                sortedDeliveryCities: [...state.deliveryCities]
+            }
         case CLEAR_CART:
             let emptyCart = []
             return {
@@ -142,8 +155,9 @@ const cartReducer = (state = initialState, action) => {
             }
 
             let totalDiscount = resultSum / 100 * 15;
-            let totalVat = Math.ceil(resultSum - totalDiscount) * 0.20;
-            let totalCost = Math.ceil(resultSum - totalDiscount + totalVat);
+            //let totalVat = Math.ceil(resultSum - totalDiscount) * 0.20;
+            let totalVat = Math.ceil((resultSum / 1.2) - resultSum) * (-1);
+            let totalCost = Math.ceil(resultSum - totalDiscount);
 
 
             return {
@@ -158,6 +172,13 @@ const cartReducer = (state = initialState, action) => {
             return {
                 ...state,
                 products: [...temp]
+            }
+        case UPDATE_SEARCH_QUERY:
+            let sortedCities = state.deliveryCities.filter(el => el.city.toLowerCase().includes(action.searchQuery.toLowerCase()));
+
+            return {
+                ...state,
+                sortedDeliveryCities: sortedCities
             }
 
         case CHANGE_DELIVERY_BLOCK:
@@ -266,6 +287,7 @@ const cartReducer = (state = initialState, action) => {
             return state;
     }
 }
+export const  createCopyCitiesAC = () => ({type: COPY_CITIES});
 export const  clearCartAC = () => ({type: CLEAR_CART});
 
 export const  updateCountAC = (count, id) => ({type: UPDATE_COUNT, newCount: count, id: id});
@@ -278,6 +300,7 @@ export const  changeDeliveryBlockAC = (value) => ({type: CHANGE_DELIVERY_BLOCK, 
 export const  updateCurrentDeliveryAC = (id) => ({type: UPDATE_CURRENT_DELIVERY, id: id});
 export const  deliveryConfirmAC = () => ({type: CONFIRM_DELIVERY});
 export const  deleteDeliveryAC = () => ({type: DELETE_DELIVERY});
+export const  updateSearchQueryAC = (searchQuery) => ({type: UPDATE_SEARCH_QUERY, searchQuery: searchQuery});
 
 export const  addressChangeAC = (address) => ({type: ADDRESS_CHANGE, address: address});
 export const  fullNameChangeAC = (fullName) => ({type: FULL_NAME_CHANGE, fullName: fullName});

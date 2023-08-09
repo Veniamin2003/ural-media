@@ -1,11 +1,13 @@
 .company_container {
-  height: 103px;
+  height: 99px;
   position: relative;
   background-color: #fafafa;
   max-width: 1280px;
   width: 100%;
   margin: 15px auto;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .company_container:after {
@@ -33,4 +35,13 @@
 }
 .company_block h3 {
   font-size: 22px;
+}
+
+.company_name {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  h3, p {
+    margin: 0;
+  }
 }
